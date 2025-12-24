@@ -68,7 +68,7 @@ SESSION_SECRET=your-random-session-secret-key-here
 ```env
 PORT=5000
 NODE_ENV=development
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`
 
 # MongoDB
 MONGODB_URI=mongodb://localhost:27017/hostel_management

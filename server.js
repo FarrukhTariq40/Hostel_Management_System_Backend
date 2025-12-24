@@ -14,8 +14,8 @@ const app = express();
 if (process.env.NODE_ENV === 'production') {
   app.use(cors({
     origin: [
-      process.env.FRONTEND_URL || 'http://localhost:3000',
-      'http://localhost:3000',
+      process.env.FRONTEND_URL || `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`,
+      `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`,
       'https://HostelManagementSystem.vercel.app',
     ],
     credentials: true,
@@ -94,6 +94,6 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`CORS enabled for: http://localhost:3000 and production URLs`);
+  console.log(`CORS enabled for: ${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL} and production URLs`);
 });
 

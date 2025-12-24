@@ -129,15 +129,15 @@ router.get(
 
 router.get(
   '/google/callback',
-  passport.authenticate('google', { session: false, failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/login?error=google_auth_failed` }),
+  passport.authenticate('google', { session: false, failureRedirect: `${process.env.FRONTEND_URL || `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`}/login?error=google_auth_failed` }),
   async (req, res) => {
     try {
       const token = generateToken(req.user._id);
-      const redirectUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/auth/callback?token=${token}`;
+      const redirectUrl = `${process.env.FRONTEND_URL || `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`}/auth/callback?token=${token}`;
       res.redirect(redirectUrl);
     } catch (error) {
       console.error('Google OAuth callback error:', error);
-      res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:3000'}/login?error=google_auth_failed`);
+      res.redirect(`${process.env.FRONTEND_URL || `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`}/login?error=google_auth_failed`);
     }
   }
 );
@@ -150,15 +150,15 @@ router.get(
 
 router.get(
   '/facebook/callback',
-  passport.authenticate('facebook', { session: false, failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/login?error=facebook_auth_failed` }),
+  passport.authenticate('facebook', { session: false, failureRedirect: `${process.env.FRONTEND_URL || `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`}/login?error=facebook_auth_failed` }),
   async (req, res) => {
     try {
       const token = generateToken(req.user._id);
-      const redirectUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/auth/callback?token=${token}`;
+      const redirectUrl = `${process.env.FRONTEND_URL || `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`}/auth/callback?token=${token}`;
       res.redirect(redirectUrl);
     } catch (error) {
       console.error('Facebook OAuth callback error:', error);
-      res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:3000'}/login?error=facebook_auth_failed`);
+      res.redirect(`${process.env.FRONTEND_URL || `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`}/login?error=facebook_auth_failed`);
     }
   }
 );
