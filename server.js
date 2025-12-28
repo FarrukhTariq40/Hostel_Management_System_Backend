@@ -75,19 +75,13 @@ app.use('/api/notifications', require('./routes/notifications'));
 app.use('/api/mess', require('./routes/mess'));
 
 // MongoDB Connection
-let isConnected = false;
-export const connectDB = async () => {
+const connectDB = async () => {
   try {
-    if(isConnected)
-    {
-      return;
-    }
     const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hostel_management', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
-    isConnected = true;
   } catch (error) {
     console.error('MongoDB connection error:', error.message);
     process.exit(1);
